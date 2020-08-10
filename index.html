@@ -20,6 +20,11 @@
             height: 100%;
         }
         
+        .logintxt {
+            color: grey;
+            font-size: 0.8em;
+        }
+        
         body {
             display: -ms-flexbox;
             display: flex;
@@ -59,12 +64,12 @@
                 <label for="usuario"> Usuario: </label>
                 <br>
                 <input class="campos" id="loginuser" type="text" name="usuario" maxlength="20" required />
-                <br>
+                <p class="logintxt">Ingresa tu cedula de identidad sin puntos ni guiones</p>
                 <br>
                 <label for="password"> Contraseña: </label>
                 <br>
                 <input class="campos" id="loginpass" type="password" name="password" maxlength="20" minlength="8" required />
-                <br>
+                <p class="logintxt">Tu contrasena debera tener un minimo de 8 caracteres</p>
                 <br>
                 <button class="button" type="button" id="loginbtn" onclick="MyFunction()"> Ingresar </button>
             </form>
