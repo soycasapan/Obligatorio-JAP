@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)https://getbootstrap.com/docs/4.3/examples/album/ -->
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <title>eMercado - Todo lo que busques está aquí</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+        
+        .alertmsg {
+            color: red;
+            font-size: 0.8em;
+        }
+        
+        body {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-align: center;
+            align-items: center;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: #f5f5f5;
+        }
+        
+        .signin {
+            width: 100%;
+            max-width: 330px;
+            padding: 15px;
+            margin: auto;
+        }
+        
+        button {
+            background: rgb(214, 28, 108);
+            border: none;
+            margin: 1em 0;
+            color: white;
+            padding: 1em;
+            width: 15%;
+            font-size: 1em;
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+
+<body class="text-center">
+
+    <div class="container p-5">
+        <div class="login" style="position: relative; widows: 100px; top: 0;">
+            <img src="img/login.png" width="300">
+            <br>
+            <form>
+                <br>
+                <input class="campos" id="loginuser" type="text" name="usuario" maxlength="10" placeholder="Usuario" />
+                <p class="alertmsg" id="alertuser"></p>
+                <input class="campos" id="loginpass" type="password" name="password" maxlength="20" minlength="8" placeholder="Contraseña" />
+                <p class="alertmsg" id="alertpass"></p>
+                <button class="button" type="button" id="loginbtn" onclick="MyFunction()"> Ingresar </button>
+            </form>
+            <p class="mb-0">.</p>
+        </div>
+    </div>
+
+    <!--OAuth Google -->
+    <div class="g-signin2" data-onsuccess="onSignIn">
+        <meta name="google-signin-client_id" content="emercado-jap.apps.googleusercontent.com">
+    </div>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+    <!-- JavaScript jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!--JavaScript del ejercicio -->
+    <script src="js/init.js"></script>
+    <script src="js/login.js"></script>
+
+</body>
+
+</html>
