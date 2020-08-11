@@ -36,6 +36,10 @@
             background-color: #f5f5f5;
         }
         
+        .g-signin2 {
+            margin: auto;
+        }
+        
         .signin {
             width: 100%;
             max-width: 330px;
@@ -71,15 +75,14 @@
                 <p class="alertmsg" id="alertpass"></p>
                 <button class="button" type="button" id="loginbtn" onclick="MyFunction()"> Ingresar </button>
             </form>
+            <!--OAuth Google -->
+            <div class="g-signin2" data-onsuccess="onSignIn">
+                <meta name="google-signin-client_id" content="emercado-jap.apps.googleusercontent.com">
+            </div>
+            <script src="https://apis.google.com/js/platform.js" async defer></script>
             <p class="mb-0">.</p>
         </div>
     </div>
-
-    <!--OAuth Google -->
-    <div class="g-signin2" data-onsuccess="onSignIn">
-        <meta name="google-signin-client_id" content="emercado-jap.apps.googleusercontent.com">
-    </div>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
 
     <!-- JavaScript jQuery -->
     <script src="js/jquery.js"></script>
