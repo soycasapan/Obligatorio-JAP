@@ -70,14 +70,12 @@
                 <input class="campos" id="loginpass" type="password" name="password" maxlength="20" minlength="8" placeholder="Contraseña" />
                 <p class="alertmsg" id="alertpass"></p>
                 <button class="button" type="button" id="loginbtn" onclick="MyFunction()"> Ingresar </button>
+                <!--OAuth Google -->
+                <div class="g-signin2" class="button" data-onsuccess="onSignIn">
+                <meta name="google-signin-client_id" content="emercado-jap.apps.googleusercontent.com">
+                </div>
+                <script src="https://apis.google.com/js/platform.js" async defer></script>
             </form>
-            
-            <!--OAuth Google -->
-    <div class="g-signin2" class="button" data-onsuccess="onSignIn">
-        <meta name="google-signin-client_id" content="emercado-jap.apps.googleusercontent.com">
-    </div>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-            
             <p class="mb-0">.</p>
         </div>
     </div>
