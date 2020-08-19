@@ -46,7 +46,9 @@ var getJSONData = function(url) {
 document.addEventListener("DOMContentLoaded", check());
 
 function check() {
-    if (sessionStorage.getItem('user') == null) {
+    url = window.location.pathname;
+    file = url.substring(url.lastIndexOf('/') + 1);
+    if (file != 'login.html' && (sessionStorage.getItem('user')) == null) {
         window.location = 'login.html'
     };
 }
