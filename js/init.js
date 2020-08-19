@@ -41,11 +41,31 @@ var getJSONData = function(url) {
 }
 
 
+//Funcion para mandar al login al usuario si no esta registrado
+
+document.addEventListener("DOMContentLoaded", check());
+
 function check() {
     if (sessionStorage.getItem('user') == null) {
         window.location = 'login.html'
     };
 }
+
+
+//Funcion para que figure el nombre de usuario en la esquina superior izquierda
+
+document.addEventListener("DOMContentLoaded", EscribirUsuario());
+
+function EscribirUsuario() {
+    if (sessionStorage.getItem('user') == null) {
+        NombreDeUsuario = "Registrate!";
+    } else {
+        NombreDeUsuario = sessionStorage.getItem('user');
+    }
+    document.getElementById("logged").textContent = "Bienvenido " + NombreDeUsuario + "!";
+};
+
+
 
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
