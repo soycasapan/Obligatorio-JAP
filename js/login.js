@@ -2,7 +2,7 @@
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 
-function MyFunction() {
+function Ingresar() {
     var user = $("#loginuser").val();
     var pass = $("#loginpass").val();
 
