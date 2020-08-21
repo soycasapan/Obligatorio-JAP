@@ -15,3 +15,36 @@ function Ingresar() {
         window.location.href = 'index.html';
     };
 };
+
+$(document).ready(function() {
+    $("#loginuser").focus(function() {
+        $("#loginuser").css({ 'border-color': 'rgb(214, 28, 108)', 'background-color': 'lightgrey' });
+    });
+});
+
+$(document).ready(function() {
+    $("#loginuser").blur(function() {
+        $("#loginuser").css({ 'border-color': 'ffffff', 'background-color': 'white' });
+    });
+});
+
+$(document).ready(function() {
+    $("#loginpass").focus(function() {
+        $("#loginpass").css({ 'border-color': 'rgb(214, 28, 108)', 'background-color': 'lightgrey' });
+    });
+});
+
+$(document).ready(function() {
+    $("#loginpass").blur(function() {
+        $("#loginpass").css({ 'border-color': 'ffffff', 'background-color': 'white' });
+    });
+});
+
+function seePass() {
+    var x = document.getElementById("loginpass");
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
+    }
+}

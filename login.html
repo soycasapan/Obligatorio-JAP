@@ -16,6 +16,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
 
+
     <style>
         html,
         body {
@@ -23,18 +24,24 @@
         }
         
         .alertmsg {
-            color: red;
+            color: rgb(214, 28, 108);
             font-size: 0.8em;
         }
         
+        .seepass {
+            color: rgb(94, 94, 94);
+            font-size: 0.8em;
+            text-align: left;
+        }
+        
         body {
-            display: -ms-flexbox;
             display: flex;
             -ms-flex-align: center;
             align-items: center;
             padding-top: 40px;
             padding-bottom: 40px;
-            background-color: #f5f5f5;
+            background: url("img/sergey-zolkin-_UeY8aTI6d0-unsplash_edited.jpg");
+            background-size: cover;
         }
         
         .signin {
@@ -45,14 +52,23 @@
         }
         
         button {
-            background: rgb(214, 28, 108);
+            background: rgb(90, 90, 90);
             border: none;
             margin: 1em 0;
             color: white;
             padding: 0.5em;
-            width: 11%;
+            width: 50%;
             font-size: 1em;
             font-weight: bold;
+        }
+        
+        .box {
+            background-color: #ffffff96;
+            max-width: 300px;
+            max-height: 500px;
+            padding: 3em;
+            margin: auto;
+            border-radius: 100px;
         }
     </style>
 
@@ -60,17 +76,28 @@
 
 <body class="text-center">
 
-    <div class="container p-5">
+    <div class="container p-5 shadow-lg p-3 mb-5 rounded box">
         <div class="login" style="position: relative; widows: 100px; top: 0;">
-            <img src="img/login.png" width="300">
+            <img src="img/eMERCADO logo.jpg" class="rounded-circle" width="80" height="80">
             <br>
             <form>
                 <br>
-                <input class="campos" id="loginuser" type="text" name="usuario" maxlength="10" placeholder="Usuario" />
+                <!--Person icon 
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                  </svg> -->
+                <input class="form-control" id="loginuser" type="text" name="usuario" maxlength="10" placeholder="Usuario" />
                 <p class="alertmsg" id="alertuser"></p>
-                <input class="campos" id="loginpass" type="password" name="password" maxlength="20" minlength="8" placeholder="Contraseña" />
+                <!--Lock icon 
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-lock-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2.5 9a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-7a2 2 0 0 1-2-2V9z"/>
+                    <path fill-rule="evenodd" d="M4.5 4a3.5 3.5 0 1 1 7 0v3h-1V4a2.5 2.5 0 0 0-5 0v3h-1V4z"/>
+                  </svg> -->
+                <input class="form-control" id="loginpass" type="password" name="password" maxlength="20" minlength="8" placeholder="Contraseña" />
+                <input type="checkbox" id="seepass" name="seepass" value="seepass" onclick="seePass()">
+                <label for="pass" class="seepass"> Ver mi contraseña </label>
                 <p class="alertmsg" id="alertpass"></p>
-                <button class="button" type="button" id="loginbtn" onclick="Ingresar()"> Ingresar </button>
+                <button class="button btn btn-dark" type="button" id="loginbtn" onclick="Ingresar()"> Ingresar </button>
             </form>
             <!--OAuth Google -->
             <div class="g-signin2" data-onsuccess="onSignIn" style="display: inline-table">

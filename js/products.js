@@ -136,3 +136,8 @@ document.addEventListener("DOMContentLoaded", function(e) {
         showProductsList(currentProductsArray);
     });
 });
+
+
+document.getElementById("busqueda").addEventListener("click", function() {
+
+});
