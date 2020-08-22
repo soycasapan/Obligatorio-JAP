@@ -1,7 +1,4 @@
-//Función que se ejecuta una vez que se haya lanzado el evento de
-//que el documento se encuentra cargado, es decir, se encuentran todos los
-//elementos HTML presentes.
-
+//Checkeo de usuario y contrasena, alertas de errores y redireccion 
 function Ingresar() {
     var user = $("#loginuser").val();
     var pass = $("#loginpass").val();
@@ -16,6 +13,7 @@ function Ingresar() {
     };
 };
 
+//Input usuario 
 $(document).ready(function() {
     $("#loginuser").focus(function() {
         $("#loginuser").css({ 'border-color': 'rgb(214, 28, 108)', 'background-color': 'lightgrey' });
@@ -28,6 +26,7 @@ $(document).ready(function() {
     });
 });
 
+//Input contrasena 
 $(document).ready(function() {
     $("#loginpass").focus(function() {
         $("#loginpass").css({ 'border-color': 'rgb(214, 28, 108)', 'background-color': 'lightgrey' });
@@ -40,6 +39,7 @@ $(document).ready(function() {
     });
 });
 
+//Posibilidad de ver contrasena ingresada 
 function seePass() {
     var x = document.getElementById("loginpass");
     if (x.type === "password") {
@@ -48,3 +48,19 @@ function seePass() {
         x.type = "password";
     }
 }
+
+//Funcion de autenticacion de Google 
+function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
+      }
