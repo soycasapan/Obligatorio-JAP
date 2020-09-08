@@ -56,19 +56,6 @@ function showProduct(product) {
 }
 
 
-//Función que se ejecuta una vez que se haya lanzado el evento de
-//que el documento se encuentra cargado, es decir, se encuentran todos los
-//elementos HTML presentes.
-document.addEventListener("DOMContentLoaded", function(e) {
-    getJSONData(PRODUCT_INFO_URL).then(function(resultObj) {
-        if (resultObj.status === "ok") {
-            product = resultObj.data;
-            showProduct(product);
-        }
-    });
-});
-
-
 // Funcion que muestra comentarios
 
 var commentsArray = [];
@@ -111,6 +98,12 @@ function showComments(commentsArray) {
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e) {
+    getJSONData(PRODUCT_INFO_URL).then(function(resultObj) {
+        if (resultObj.status === "ok") {
+            product = resultObj.data;
+            showProduct(product);
+        }
+    });
     getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(resultObj) {
         if (resultObj.status === "ok") {
             commentsArray = resultObj.data;
@@ -118,6 +111,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
         }
     });
 });
+
 
 //Función para mostrar estrellas
 function printStars(stars) {
@@ -132,3 +126,52 @@ function printStars(stars) {
     };
     return s;
 }
+
+
+//Funcion para ingresar comentario
+function newComment() {
+
+    var newscore = document.getElementById("ns").value;
+    var newcomment = document.getElementById("nc").value;
+
+    if (newscore == "" || newscore < 0 || newscore > 6) {
+        document.getElementById("as").innerHTML = "Debes ingresar una calificacion entre 1 y 5";
+    } else if (newcomment == "") {
+        document.getElementById("ac").innerHTML = "Debes ingresar un comentario con tu opinión sobre este producto";
+    } else {
+        document.getElementById("commentok").innerHTML = "Gracias por tu comentario! El mismo ha sido enviado exitosamente y ayudará a otros compradores a la hora de comprar";
+        /* showNewComment(); */
+        document.getElementById("addcomment").remove();
+    };
+
+
+};
+
+/*
+function showNewComment() {
+
+    newComment = ` 
+            <div class="col-12 col-sm-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title" id="stars-score"> ` + printStars(newscore) + `</h5>
+                        <p class="card-text"> ` + newcomment + ` </p>
+                        <small class="text-muted">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                        </svg> ` + user + ` 
+                        </small>
+                        <br>
+                        <small class="text-muted">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar4-week" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v1h14V3a1 1 0 0 0-1-1H2zm13 3H1v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V5z"/>
+                        <path d="M11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-2 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
+                        </svg> ` + date + ` </small>
+                    </div>
+                </div>
+            </div>
+            `
+    document.getElementById("comments-container").innerHTML += newComment;
+};
+
+*/

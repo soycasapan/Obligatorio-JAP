@@ -76,6 +76,15 @@ footer p {
     background: white;
 }
 
+.alertmessage {
+    color: red;
+}
+
+.successmessage {
+    color: green;
+    text-align: center;
+}
+
 .alert {
     position: fixed;
     top: 80px;
@@ -136,6 +145,10 @@ footer p {
     left: 0;
     z-index: 1021;
     display: none;
+}
+
+#new-comment-bttn {
+    color: white;
 }
 
 a.custom-card,
