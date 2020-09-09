@@ -28,7 +28,7 @@
         </div>
     </nav>
 
-
+    <!-- Producto -->
     <div class="container" style="margin-top: 50px;">
         <div class="list-group">
             <div class="row" id="prod-container">
@@ -36,6 +36,7 @@
         </div>
     </div>
 
+    <!-- Comentarios -->
     <div class="text-center p-4">
         <p class="lead">Comentarios</p>
     </div>
@@ -47,6 +48,7 @@
         </div>
     </div>
 
+    <!-- Agregar comentario -->
     <div class="container" style="margin-top: 50px;">
         <div class="list-group" id="addcomment">
             <button class="btn btn btn-dark" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> Ingrese su comentario </button>
@@ -54,24 +56,18 @@
             <div class="collapse" id="collapseExample">
                 <div class="card card-body">
                     <form>
-                        <!--Nuevo boton
-                        <input type="radio" name="stars" value="1" /> <span class="fa fa-star checked"></span>
-                        <input type="radio" name="stars" value="2" /> <span class="fa fa-star checked"></span> <span class="fa fa-star checked"></span>
-                        <input type="radio" name="stars" value="3" /> <span class="fa fa-star checked"></span> <span class="fa fa-star checked"></span> <span class="fa fa-star checked"></span>
-                        <input type="radio" name="stars" value="4" /> <span class="fa fa-star checked"></span> <span class="fa fa-star checked"></span> <span class="fa fa-star checked"></span> <span class="fa fa-star checked"></span>
-                        <input type="radio" name="stars" value="5" /> <span class="fa fa-star checked"></span> <span class="fa fa-star checked"></span> <span class="fa fa-star checked"></span> <span class="fa fa-star checked"></span> <span class="fa fa-star checked"></span>-->
-                        <!--Nuevo boton
+                        <!--categorias-->
                         <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                            <div class="btn-group mr-2" role="group" aria-label="First group">
-                                <button id="1s" type="button" class="btn btn-secondary">1</button>
-                                <button id="2s" type="button" class="btn btn-secondary">2</button>
-                                <button id="3s" type="button" class="btn btn-secondary">3</button>
-                                <button id="4s" type="button" class="btn btn-secondary">4</button>
-                                <button id="5s" type="button" class="btn btn-secondary">5</button>
+                            <div class="btn-group mr-2" role="group" aria-label="First group" id="ns">
+                                <button value="1" id="1s" type="button" class="btn btn-secondary stars">1</button>
+                                <button value="2" id="2s" type="button" class="btn btn-secondary stars">2</button>
+                                <button value="3" id="3s" type="button" class="btn btn-secondary stars">3</button>
+                                <button value="4" id="4s" type="button" class="btn btn-secondary stars">4</button>
+                                <button value="5" id="5s" type="button" class="btn btn-secondary stars">5</button>
                             </div>
-                        </div>-->
-                        <input type="number" id="ns" placeholder="Calificacion" />
+                        </div>
                         <p id="as" class="alertmessage"></p>
+                        <!--comentario-->
                         <input id="nc" placeholder="Deja aqui tu comentario del producto" style="height: 100px; width: 100%;" />
                         <p id="ac" class="alertmessage"></p>
                         <a onclick="newComment()" class="btn btn-dark" id="new-comment-bttn"> Enviar </a>

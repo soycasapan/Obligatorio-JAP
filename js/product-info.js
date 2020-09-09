@@ -128,30 +128,13 @@ function printStars(stars) {
 }
 
 
-//Funcion para ingresar comentario
-function newComment() {
+//Funcion para que muestre nuevo comentario
+function showNewComment(newscore, newcomment) {
 
-    var newscore = document.getElementById("ns").value;
-    var newcomment = document.getElementById("nc").value;
+    var today = new Date();
 
-    if (newscore == "" || newscore < 0 || newscore > 6) {
-        document.getElementById("as").innerHTML = "Debes ingresar una calificacion entre 1 y 5";
-    } else if (newcomment == "") {
-        document.getElementById("ac").innerHTML = "Debes ingresar un comentario con tu opinión sobre este producto";
-    } else {
-        document.getElementById("commentok").innerHTML = "Gracias por tu comentario! El mismo ha sido enviado exitosamente y ayudará a otros compradores a la hora de comprar";
-        /* showNewComment(); */
-        document.getElementById("addcomment").remove();
-    };
-
-
-};
-
-/*
-function showNewComment() {
-
-    newComment = ` 
-            <div class="col-12 col-sm-3">
+    comment = ` 
+            <div class="col-12 col-sm-3" style="margin-top: 15px;">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title" id="stars-score"> ` + printStars(newscore) + `</h5>
@@ -159,19 +142,43 @@ function showNewComment() {
                         <small class="text-muted">
                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                        </svg> ` + user + ` 
+                        </svg>` + NombreDeUsuario + `
                         </small>
                         <br>
                         <small class="text-muted">
                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar4-week" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v1h14V3a1 1 0 0 0-1-1H2zm13 3H1v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V5z"/>
                         <path d="M11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-2 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
-                        </svg> ` + date + ` </small>
+                        </svg> ` + today + ` </small>
                     </div>
                 </div>
             </div>
             `
-    document.getElementById("comments-container").innerHTML += newComment;
+
+    document.getElementById("comments-container").innerHTML += comment;
 };
 
-*/
+
+//Funcion para ingresar comentario
+function newComment() {
+
+    var newscore = stars;
+    var newcomment = document.getElementById("nc").value;
+
+    if (newscore == "" /* || newscore < 0 || newscore > 6*/ ) {
+        document.getElementById("as").innerHTML = "Debes ingresar una calificacion";
+    } else if (newcomment == "") {
+        document.getElementById("ac").innerHTML = "Debes ingresar un comentario con tu opinión sobre este producto";
+    } else {
+        document.getElementById("commentok").innerHTML = "Gracias por tu comentario! El mismo ha sido enviado exitosamente y ayudará a otros usuarios";
+        showNewComment(newscore, newcomment);
+        document.getElementById("addcomment").remove();
+    };
+
+};
+
+//Funcion para asignar valor de categoria
+var stars = 0;
+$(".stars").click(function() {
+    stars = this.value;
+})
