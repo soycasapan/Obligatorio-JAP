@@ -94,25 +94,6 @@ function showComments(commentsArray) {
 }
 
 
-//Función que se ejecuta una vez que se haya lanzado el evento de
-//que el documento se encuentra cargado, es decir, se encuentran todos los
-//elementos HTML presentes.
-document.addEventListener("DOMContentLoaded", function(e) {
-    getJSONData(PRODUCT_INFO_URL).then(function(resultObj) {
-        if (resultObj.status === "ok") {
-            product = resultObj.data;
-            showProduct(product);
-        }
-    });
-    getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(resultObj) {
-        if (resultObj.status === "ok") {
-            commentsArray = resultObj.data;
-            showComments(commentsArray);
-        }
-    });
-});
-
-
 //Función para mostrar estrellas
 function printStars(stars) {
     s = ""
@@ -165,7 +146,7 @@ function newComment() {
     var newscore = stars;
     var newcomment = document.getElementById("nc").value;
 
-    if (newscore == "" /* || newscore < 0 || newscore > 6*/ ) {
+    if (newscore == "") {
         document.getElementById("as").innerHTML = "Debes ingresar una calificacion";
     } else if (newcomment == "") {
         document.getElementById("ac").innerHTML = "Debes ingresar un comentario con tu opinión sobre este producto";
@@ -182,3 +163,65 @@ var stars = 0;
 $(".stars").click(function() {
     stars = this.value;
 })
+
+
+// Funcion que muestra productos relacionados
+
+function showRelatedProducts(currentProductsArray) {
+
+    related = product.relatedProducts;
+
+    let htmlContentToAppend = "";
+
+    for (let i = 0; i < currentProductsArray.length; i++) {
+        let relProduct = currentProductsArray[i];
+
+        if (related.indexOf(i) != -1) {
+
+            htmlContentToAppend += `        
+        <a href="product-info.html" class="list-group-item list-group-item-action col" style="margin: 15px;">
+            <div class="row">
+                <div class="col-6">
+                    <img src="` + relProduct.imgSrc + `" alt="` + relProduct.description + `" class="img-thumbnail">
+                </div>
+                <div class="col">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h4 class="mb-1">` + relProduct.name + `</h4>
+                        <small class="text-muted"> Precio: ` + relProduct.currency + relProduct.cost + ` </small>
+                    </div>
+                        <p class="mb-1">` + relProduct.description + `</p>
+                </div>
+            </div>
+        </a>
+        `
+        };
+    };
+
+    document.getElementById("relatedProducts-container").innerHTML += htmlContentToAppend;
+
+}
+
+
+//Función que se ejecuta una vez que se haya lanzado el evento de
+//que el documento se encuentra cargado, es decir, se encuentran todos los
+//elementos HTML presentes.
+document.addEventListener("DOMContentLoaded", function(e) {
+    getJSONData(PRODUCT_INFO_URL).then(function(resultObj) {
+        if (resultObj.status === "ok") {
+            product = resultObj.data;
+            showProduct(product);
+        }
+    });
+    getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(resultObj) {
+        if (resultObj.status === "ok") {
+            commentsArray = resultObj.data;
+            showComments(commentsArray);
+        }
+    });
+    getJSONData(PRODUCTS_URL).then(function(resultObj) {
+        if (resultObj.status === "ok") {
+            currentProductsArray = resultObj.data;
+            showRelatedProducts(currentProductsArray);
+        }
+    });
+});
