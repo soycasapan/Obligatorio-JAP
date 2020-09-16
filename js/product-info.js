@@ -95,6 +95,7 @@ function showComments(commentsArray) {
 
 
 //Función para mostrar estrellas
+
 function printStars(stars) {
     s = ""
     for (let i = 0; i < 5; i++) {
@@ -110,6 +111,7 @@ function printStars(stars) {
 
 
 //Funcion para que muestre nuevo comentario
+
 function showNewComment(newscore, newcomment) {
 
     var today = new Date();
@@ -140,10 +142,41 @@ function showNewComment(newscore, newcomment) {
 
 
 //Funcion para ingresar comentario
+
 function newComment() {
 
     var newscore = stars;
     var newcomment = document.getElementById("nc").value;
+
+    let anothercomment = ` 
+    <div class="container" style="margin-top: 50px;">
+    <div class="list-group" id="addcomment">
+        <button class="btn btn btn-dark" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> Ingrese un nuevo comentario </button>
+        <br>
+        <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+                <form>
+                    <!--categorias-->
+                    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                        <div class="btn-group mr-2" role="group" aria-label="First group" id="ns">
+                            <button value="1" type="button" class="btn btn-secondary stars">1</button>
+                            <button value="2" type="button" class="btn btn-secondary stars">2</button>
+                            <button value="3" type="button" class="btn btn-secondary stars">3</button>
+                            <button value="4" type="button" class="btn btn-secondary stars">4</button>
+                            <button value="5" type="button" class="btn btn-secondary stars">5</button>
+                        </div>
+                    </div>
+                    <p id="as" class="alertmessage"></p>
+                    <!--comentario-->
+                    <input id="nc" placeholder="Deja aqui tu comentario del producto" style="height: 100px; width: 100%;" />
+                    <p id="ac" class="alertmessage"></p>
+                    <a onclick="newComment()" class="btn btn-dark" id="new-comment-bttn"> Enviar </a>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+    `
 
     if (newscore == "") {
         document.getElementById("as").innerHTML = "Debes ingresar una calificacion";
@@ -153,12 +186,14 @@ function newComment() {
         document.getElementById("commentok").innerHTML = "Gracias por tu comentario! El mismo ha sido enviado exitosamente y ayudará a otros usuarios";
         showNewComment(newscore, newcomment);
         document.getElementById("addcomment").remove();
+        document.getElementById("another-comment").innerHTML = anothercomment
     };
 
 };
 
 
 //Funcion para asignar valor de categoria
+
 var stars = 0;
 $(".stars").click(function() {
     stars = this.value;
