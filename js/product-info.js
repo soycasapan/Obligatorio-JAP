@@ -135,7 +135,6 @@ function showNewComment(newscore, newcomment) {
                 </div>
             </div>
             `
-
     document.getElementById("comments-container").innerHTML += comment;
 };
 
@@ -158,6 +157,7 @@ function newComment() {
 
 };
 
+
 //Funcion para asignar valor de categoria
 var stars = 0;
 $(".stars").click(function() {
@@ -179,7 +179,7 @@ function showRelatedProducts(currentProductsArray) {
         if (related.indexOf(i) != -1) {
 
             htmlContentToAppend += `        
-        <a href="product-info.html" class="list-group-item list-group-item-action col" style="margin: 15px;">
+        <div class="list-group-item col" style="margin: 15px;">
             <div class="row">
                 <div class="col-6">
                     <img src="` + relProduct.imgSrc + `" alt="` + relProduct.description + `" class="img-thumbnail">
@@ -192,13 +192,11 @@ function showRelatedProducts(currentProductsArray) {
                         <p class="mb-1">` + relProduct.description + `</p>
                 </div>
             </div>
-        </a>
+        </div>
         `
         };
     };
-
     document.getElementById("relatedProducts-container").innerHTML += htmlContentToAppend;
-
 }
 
 
