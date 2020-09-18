@@ -42,7 +42,7 @@ var getJSONData = function(url) {
 
 //Funcion para que figure el nombre de usuario en la esquina superior izquierda
 
-document.addEventListener("DOMContentLoaded", EscribirUsuario());
+document.addEventListener("DOMContentLoaded", EscribirUsuario);
 
 function EscribirUsuario() {
     if (sessionStorage.getItem('user') == null) {
@@ -52,6 +52,7 @@ function EscribirUsuario() {
     }
     document.getElementById("logged").textContent = NombreDeUsuario;
 };
+
 //Funcion para eliminar datos de usuario
 
 function olvidarUsuario() {
@@ -60,7 +61,7 @@ function olvidarUsuario() {
 
 //Funcion para mandar al login al usuario si no esta registrado
 
-document.addEventListener("DOMContentLoaded", check());
+document.addEventListener("DOMContentLoaded", check);
 
 function check() {
     url = window.location.pathname;

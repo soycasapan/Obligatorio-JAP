@@ -6,20 +6,22 @@ document.addEventListener("DOMContentLoaded", function(e) {
         if (resultObj.status === "ok") {
             product = resultObj.data;
             showProduct(product);
+
+            getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(resultObj) {
+                if (resultObj.status === "ok") {
+                    commentsArray = resultObj.data;
+                    showComments(commentsArray);
+                }
+            });
+            getJSONData(PRODUCTS_URL).then(function(resultObj) {
+                if (resultObj.status === "ok") {
+                    currentProductsArray = resultObj.data;
+                    showRelatedProducts(currentProductsArray);
+                }
+            });
         }
     });
-    getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(resultObj) {
-        if (resultObj.status === "ok") {
-            commentsArray = resultObj.data;
-            showComments(commentsArray);
-        }
-    });
-    getJSONData(PRODUCTS_URL).then(function(resultObj) {
-        if (resultObj.status === "ok") {
-            currentProductsArray = resultObj.data;
-            showRelatedProducts(currentProductsArray);
-        }
-    });
+
 });
 
 
