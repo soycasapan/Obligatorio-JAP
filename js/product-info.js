@@ -1,3 +1,28 @@
+//Función que se ejecuta una vez que se haya lanzado el evento de
+//que el documento se encuentra cargado, es decir, se encuentran todos los
+//elementos HTML presentes.
+document.addEventListener("DOMContentLoaded", function(e) {
+    getJSONData(PRODUCT_INFO_URL).then(function(resultObj) {
+        if (resultObj.status === "ok") {
+            product = resultObj.data;
+            showProduct(product);
+        }
+    });
+    getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(resultObj) {
+        if (resultObj.status === "ok") {
+            commentsArray = resultObj.data;
+            showComments(commentsArray);
+        }
+    });
+    getJSONData(PRODUCTS_URL).then(function(resultObj) {
+        if (resultObj.status === "ok") {
+            currentProductsArray = resultObj.data;
+            showRelatedProducts(currentProductsArray);
+        }
+    });
+});
+
+
 // Funcion que muestra productos
 
 function showProduct(product) {
@@ -233,28 +258,3 @@ function showRelatedProducts(currentProductsArray) {
     };
     document.getElementById("relatedProducts-container").innerHTML += htmlContentToAppend;
 }
-
-
-//Función que se ejecuta una vez que se haya lanzado el evento de
-//que el documento se encuentra cargado, es decir, se encuentran todos los
-//elementos HTML presentes.
-document.addEventListener("DOMContentLoaded", function(e) {
-    getJSONData(PRODUCT_INFO_URL).then(function(resultObj) {
-        if (resultObj.status === "ok") {
-            product = resultObj.data;
-            showProduct(product);
-        }
-    });
-    getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(resultObj) {
-        if (resultObj.status === "ok") {
-            commentsArray = resultObj.data;
-            showComments(commentsArray);
-        }
-    });
-    getJSONData(PRODUCTS_URL).then(function(resultObj) {
-        if (resultObj.status === "ok") {
-            currentProductsArray = resultObj.data;
-            showRelatedProducts(currentProductsArray);
-        }
-    });
-});

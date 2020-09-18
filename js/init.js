@@ -40,6 +40,23 @@ var getJSONData = function(url) {
         });
 }
 
+//Funcion para que figure el nombre de usuario en la esquina superior izquierda
+
+document.addEventListener("DOMContentLoaded", EscribirUsuario());
+
+function EscribirUsuario() {
+    if (sessionStorage.getItem('user') == null) {
+        NombreDeUsuario = "Registrate!";
+    } else {
+        NombreDeUsuario = sessionStorage.getItem('user');
+    }
+    document.getElementById("logged").textContent = NombreDeUsuario;
+};
+//Funcion para eliminar datos de usuario
+
+function olvidarUsuario() {
+    sessionStorage.removeItem('user', NombreDeUsuario);
+};
 
 //Funcion para mandar al login al usuario si no esta registrado
 
@@ -52,17 +69,3 @@ function check() {
         window.location = 'login.html'
     };
 }
-
-
-//Funcion para que figure el nombre de usuario en la esquina superior izquierda
-
-document.addEventListener("DOMContentLoaded", EscribirUsuario());
-
-function EscribirUsuario() {
-    if (sessionStorage.getItem('user') == null) {
-        NombreDeUsuario = "Registrate!";
-    } else {
-        NombreDeUsuario = sessionStorage.getItem('user');
-    }
-    document.getElementById("logged").textContent = "Bienvenido " + NombreDeUsuario + "!";
-};
