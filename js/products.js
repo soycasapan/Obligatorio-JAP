@@ -136,8 +136,11 @@ document.addEventListener("DOMContentLoaded", function(e) {
         showProductsList(currentProductsArray);
     });
 });
+document.getElementById("busqueda").addEventListener("click", function() {});
 
-
-document.getElementById("busqueda").addEventListener("click", function() {
-
-});
+/*
+//Buscador de productos
+function searchProducts() {
+    const productSearch = document.querySelector("#busqueda");
+}
+*/

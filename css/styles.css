@@ -165,3 +165,11 @@ a.custom-card:hover {
     font-weight: bolder;
     text-align: center;
 }
+
+.logged {
+    background-color: rgb(52, 58, 64) !important;
+    color: rgb(214, 28, 108) !important;
+    border-color: rgb(52, 58, 64) !important;
+    font-weight: bold !important;
+    text-align: center !important;
+}
