@@ -21,10 +21,10 @@ function showCart(cartList) {
         htmlContentToAppend += `        
         <div class="list-group-item list-group-item-action">
             <div class="row">
-                <div class="col-3">
+                <div class="col-12 col-md-3">
                     <img src="` + cartProduct.src + `" alt="` + cartProduct.name + `" class="img-thumbnail">
                 </div>
-                <div class="col-6">
+                <div class="col-12 col-md-5">
                     <div class="d-flex w-100 justify-content-between">
                         <h4 class="mb-1">` + cartProduct.name + `</h4>
                     </div>
@@ -32,7 +32,7 @@ function showCart(cartList) {
                         <small class="text-muted"> ` + cartProduct.count + ` vendidos  </small>
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="col-12 col-md-4">
                     <small class="text-muted"> Precio unitario: ` + cartProduct.currency + cartProduct.unitCost + ` </small>
                     <input class="form-control" type="number" placeholder="cantidad" id="cant">
                     <small class="text-muted"> Subtotal: ` + cartProduct.currency + ` xxx </small>

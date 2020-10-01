@@ -173,3 +173,7 @@ a.custom-card:hover {
     font-weight: bold !important;
     text-align: center !important;
 }
+
+.bold {
+    font-weight: bold;
+}
