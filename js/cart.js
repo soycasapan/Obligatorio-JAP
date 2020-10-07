@@ -31,8 +31,10 @@ function showCart(cartList) {
                 </div>
                 <div class="col-12 col-md-4">
                     <small class="text-muted"> Precio unitario: ` + cartProduct.currency + cartProduct.unitCost + ` </small>
-                    <input class="form-control" type="number" min="1" max="100" placeholder="` + cartProduct.count + `" onchange="subtotal('` + cartProduct.currency + `', this.value, ` + cartProduct.unitCost + `, 'numero` + i + `')">
-                    <small class="text-muted bold" id="numero` + i + `" > Total: ` + cartProduct.currency + cartProduct.count * cartProduct.unitCost + `</small>                    
+                    <input class="form-control" type="number" min="1" max="100" placeholder="` + cartProduct.count + `" onchange="calcularSubtotal('` + cartProduct.currency + `', this.value, ` + cartProduct.unitCost + `, 'numero` + i + `')">
+                    <small class="text-muted bold" id="numero` + i + `" >
+                    ` + subtotal(cartProduct.currency, cartProduct.count, cartProduct.unitCost) + `
+                    </small>                    
                 </div>
             </div>
         </div>
@@ -42,10 +44,28 @@ function showCart(cartList) {
     document.getElementById("cart-list-container").innerHTML = htmlContentToAppend;
 };
 
-// Funcion que calcula subtotales
+// Funcion que calcula subtotales iniciales
 
-function subtotal(currency, cant, precio, id) {
-    total = cant * precio;
-    texto = "Total: " + currency + total;
-    document.getElementById(id).innerHTML = texto;
+function subtotal(currency, cant, precio) {
+    if (currency == "UYU") {
+        total = cant * precio;
+        return "Total: " + currency + total;
+    } else {
+        total = cant * precio;
+        return "Total: UYU" + total * 40;
+    }
+};
+
+// Funcion que calcula subtotales cuando el usuario cambia cantidad
+
+function calcularSubtotal(currency, cant, precio, id) {
+    if (currency == "UYU") {
+        total = cant * precio;
+        texto = "Total: " + currency + total;
+        document.getElementById(id).innerHTML = texto;
+    } else {
+        total = cant * precio;
+        texto = "Total: UYU" + total * 40;
+        document.getElementById(id).innerHTML = texto;
+    }
 };
