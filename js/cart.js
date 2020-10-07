@@ -28,14 +28,11 @@ function showCart(cartList) {
                     <div class="d-flex w-100 justify-content-between">
                         <h4 class="mb-1">` + cartProduct.name + `</h4>
                     </div>
-                    <div class="d-flex w-100 justify-content-between">
-                        <small class="text-muted"> ` + cartProduct.count + ` vendidos  </small>
-                    </div>
                 </div>
                 <div class="col-12 col-md-4">
                     <small class="text-muted"> Precio unitario: ` + cartProduct.currency + cartProduct.unitCost + ` </small>
-                    <input class="form-control" type="number" placeholder="cantidad" id="cant">
-                    <small class="text-muted"> Subtotal: ` + cartProduct.currency + ` xxx </small>
+                    <input class="form-control" type="number" min="1" max="100" placeholder="` + cartProduct.count + `" onchange="subtotal('` + cartProduct.currency + `', this.value, ` + cartProduct.unitCost + `, 'numero` + i + `')">
+                    <small class="text-muted bold" id="numero` + i + `" > Total: ` + cartProduct.currency + cartProduct.count * cartProduct.unitCost + `</small>                    
                 </div>
             </div>
         </div>
@@ -43,4 +40,12 @@ function showCart(cartList) {
     }
 
     document.getElementById("cart-list-container").innerHTML = htmlContentToAppend;
+};
+
+// Funcion que calcula subtotales
+
+function subtotal(currency, cant, precio, id) {
+    total = cant * precio;
+    texto = "Total: " + currency + total;
+    document.getElementById(id).innerHTML = texto;
 };
