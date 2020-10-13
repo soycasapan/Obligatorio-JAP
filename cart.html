@@ -74,7 +74,7 @@
                         </div>
                         <div class="col-12 col-md-4">
                             <p class="bold">Subtotal: </p>
-                            <p id="subtotal" class="bold"></p>
+                            <p id="subtotal-art" class="bold"></p>
                         </div>
                     </div>
                 </div>
@@ -88,8 +88,13 @@
                         </div>
                         <div class="col-12 col-md-6">
                             <p class="bold">Datos para el envio</p>
-                            <input type="text" class="form-control" id="direccion" placeholder="Ingrese la direccion" value="">
-                            <input type="text" class="form-control" id="pais" placeholder="Ingrese el pais" value="" style="margin-top: 20px;">
+                            <div class="form-row">
+                                <input class="col-6 form-control" id="nombreEnvio" type="text" placeholder="Nombre de quien recibe" style="width: 100%;" value="" style="margin-top: 10px; margin-bottom: 10px;" />
+                                <input class="col-6 form-control" id="telefonoEnvio" type="text" placeholder="Telefono de contacto" style="width: 100%;" value="" style="margin-top: 20px;" />
+                                <input class="col-12 form-control" id="direccionEnvio" type="text" placeholder="Direccion de envio" style="width: 100%;" value="" style="margin-top: 20px;" />
+                                <input class="col-6 form-control" id="paisEnvio" type="text" placeholder="Pais" style="width: 100%;" value="" style="margin-top: 20px;" />
+                                <input class="col-6 form-control" id="ciudadEnvio" type="text" placeholder="Ciudad" style="width: 100%;" value="" style="margin-top: 20px;" />
+                            </div>
                         </div>
                         <div class="col-12 col-md-2"></div>
                         <div class="col-12 col-md-4">
@@ -97,40 +102,17 @@
                             <div class="d-block my-3">
                                 <div class="custom-control custom-radio">
                                     <input id="premium" name="envio" type="radio" class="custom-control-input" required="">
-                                    <label class="custom-control-label" for="premium">Premium (2-5 días) <br> Costo del 15% sobre el subtotal </label>
+                                    <label class="custom-control-label" for="premium" onclick="envioPremium(100)">Premium (2-5 días) <br> Costo del 15% sobre el subtotal </label>
                                 </div>
                                 <div class="custom-control custom-radio">
                                     <input id="express" name="envio" type="radio" class="custom-control-input" required="">
-                                    <label class="custom-control-label" for="express">Express (5-8 días)<br> Costo del 7% sobre el subtotal </label>
+                                    <label class="custom-control-label" for="express" onclick="envioExpress(100)">Express (5-8 días)<br> Costo del 7% sobre el subtotal </label>
                                 </div>
                                 <div class="custom-control custom-radio">
-                                    <input id="standard" name="envio" type="radio" class="custom-control-input" required="">
+                                    <input id="standard" name="envio" type="radio" class="custom-control-input" required="" onclick="envioStandard(100)">
                                     <label class="custom-control-label" for="standard">Standard (12-15 días) <br> Costo del 5% sobre el subtotal</label>
                                 </div>
-                                <p class="bold" style="margin-top: 20px;">Costo de envio:</p>
-                                <p id="costoenvio" class="bold"></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr class="mb-4">
-
-                <!--Forma de pago-->
-                <div class="container" style="margin-top: 20px;">
-                    <div class="row">
-                        <div class="col-12">
-                            <p class="bold text-center">PAGO</p>
-                        </div>
-                        <div class="col-12 col-md-8">
-                            <div class="d-block my-3">
-                                <div class="custom-control custom-radio">
-                                    <input id="tarjeta" name="formapago" type="radio" class="custom-control-input" required="">
-                                    <label class="custom-control-label" for="tarjeta">Tarjeta de credito</label>
-                                </div>
-                                <div class="custom-control custom-radio">
-                                    <input id="transferencia" name="formapagopublicationType" type="radio" class="custom-control-input" required="">
-                                    <label class="custom-control-label" for="transferencia">Transferencia bancaria</label>
-                                </div>
+                                <p class="bold" id="costo-envio" style="margin-top: 20px;">Costo de envio: UYU</p>
                             </div>
                         </div>
                     </div>
@@ -149,6 +131,66 @@
                     </div>
                 </div>
 
+                <!-- Button trigger modal -->
+                <div class="container" style="margin-top: 20px;">
+                    <div class="row">
+                        <div class="col-12 col-md-8">
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#pagoModal" style="width: 100%;">Seleccionar forma de pago</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="pagoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Forma de pago</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                </button>
+                            </div>
+                            <div class="modal-body">
+
+                                <!-- Tarjeta de credito -->
+                                <p>
+                                    <button class="btn btn-light" type="button" data-toggle="collapse" data-target="#collapseTarjeta" aria-expanded="false" aria-controls="collapseTarjeta" style="width: 100%;">
+                                      Tarjeta de credito
+                                    </button>
+                                </p>
+                                <div class="collapse" id="collapseTarjeta" style="margin-top: 10px; margin-bottom: 10px;">
+                                    <div class="form-row">
+                                        <p>Ingresa los datos de tu tarjeta de credito</p>
+                                        <input class="col-12 form-control" id="titularTarjeta" type="text" placeholder="Nombre del titular de la tarjeta" style="width: 100%;" />
+                                        <input class="col-12 form-control" id="numeroTarjeta" type="text" placeholder="Numero de la tarjeta" style="width: 100%;" />
+                                        <input class="col-6 form-control" id="vencimientoTarjeta" type="date" placeholder="Fecha de vencimiento" style="width: 100%;" />
+                                        <input class="col-6 form-control" id="CVCTarjeta" type="text" placeholder="Codigo CVC" style="width: 100%;" />
+                                    </div>
+                                </div>
+
+                                <!-- Transferencia bancaria -->
+                                <p>
+                                    <button class="btn btn-light" type="button" data-toggle="collapse" data-target="#collapseTransferencia" aria-expanded="false" aria-controls="collapseTransferencia" style="width: 100%;">
+                                      Transferencia bancaria
+                                    </button>
+                                </p>
+                                <div class="collapse" id="collapseTransferencia" style="margin-top: 10px; margin-bottom: 10px;">
+                                    <div class="form-row">
+                                        <p>Numero de cuenta JAP2020: 123-456-798</p>
+                                        <input class="col-12 form-control" id="numeroTransferencia" type="text" placeholder="Numero de referencia de la transferencia" style="width: 100%;" />
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                <button type="button" class="btn btn-dark">Aceptar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!--Finalizar compra-->
                 <div class="container" style="margin-top: 20px;">
                     <div class="row">
@@ -156,7 +198,7 @@
                         </div>
                         <div class="col-12 col-md-4">
                             <p class="alertmsg" id="alertpass"></p>
-                            <button class="button btn btn-dark" type="button" id="comprarbtn" onclick=""> Comprar </button>
+                            <button class="button btn btn-dark" type="button" id="comprarbtn" onclick="" style="width: 100%;"> Comprar </button>
                         </div>
                     </div>
                 </div>

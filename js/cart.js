@@ -1,24 +1,26 @@
-//Función que se ejecuta una vez que se haya lanzado el evento de
-//que el documento se encuentra cargado, es decir, se encuentran todos los
-//elementos HTML presentes.
-document.addEventListener("DOMContentLoaded", function(e) {
-    getJSONData(CART_INFO_URL).then(function(resultObj) {
-        if (resultObj.status === "ok") {
-            cartList = resultObj.data;
-            showCart(cartList);
-        }
-    });
-});
+ //const PAISES = https://raw.githubusercontent.com/millan2993/countries/master/json/countries.json
 
-// Funcion que muestra productos
+ //Función que se ejecuta una vez que se haya lanzado el evento de
+ //que el documento se encuentra cargado, es decir, se encuentran todos los
+ //elementos HTML presentes.
+ document.addEventListener("DOMContentLoaded", function(e) {
+     getJSONData(CART_INFO_URL).then(function(resultObj) {
+         if (resultObj.status === "ok") {
+             cartList = resultObj.data;
+             showCart(cartList);
+         }
+     });
+ });
 
-function showCart(cartList) {
+ // Funcion que muestra productos
 
-    let htmlContentToAppend = "";
-    for (let i = 0; i < cartList.articles.length; i++) {
-        let cartProduct = cartList.articles[i];
+ function showCart(cartList) {
 
-        htmlContentToAppend += `        
+     let htmlContentToAppend = "";
+     for (let i = 0; i < cartList.articles.length; i++) {
+         let cartProduct = cartList.articles[i];
+
+         htmlContentToAppend += `        
         <div class="list-group-item list-group-item-action">
             <div class="row">
                 <div class="col-12 col-md-3">
@@ -39,33 +41,54 @@ function showCart(cartList) {
             </div>
         </div>
         `
-    }
+     }
 
-    document.getElementById("cart-list-container").innerHTML = htmlContentToAppend;
-};
+     document.getElementById("cart-list-container").innerHTML = htmlContentToAppend;
+ };
 
-// Funcion que calcula subtotales iniciales
+ // Funcion que calcula subtotales iniciales
 
-function subtotal(currency, cant, precio) {
-    if (currency == "UYU") {
-        total = cant * precio;
-        return "Total: " + currency + total;
-    } else {
-        total = cant * precio;
-        return "Total: UYU" + total * 40;
-    }
-};
+ function subtotal(currency, cant, precio) {
+     if (currency == "UYU") {
+         total = cant * precio;
+         return "Total: " + currency + total;
+     } else {
+         total = cant * precio;
+         return "Total: UYU" + total * 40;
+     }
+ };
 
-// Funcion que calcula subtotales cuando el usuario cambia cantidad
+ // Funcion que calcula subtotales cuando el usuario cambia cantidad
 
-function calcularSubtotal(currency, cant, precio, id) {
-    if (currency == "UYU") {
-        total = cant * precio;
-        texto = "Total: " + currency + total;
-        document.getElementById(id).innerHTML = texto;
-    } else {
-        total = cant * precio;
-        texto = "Total: UYU" + total * 40;
-        document.getElementById(id).innerHTML = texto;
-    }
-};
+ function calcularSubtotal(currency, cant, precio, id) {
+     if (currency == "UYU") {
+         total = cant * precio;
+         texto = "Total: " + currency + total;
+         document.getElementById(id).innerHTML = texto;
+     } else {
+         total = cant * precio;
+         texto = "Total: UYU" + total * 40;
+         document.getElementById(id).innerHTML = texto;
+     }
+ };
+
+ // Funciones para calcular costo de envio
+
+
+ // Envio premium
+ function envioPremium(subtotal) {
+     envio = subtotal * 0.15;
+     document.getElementById("costo-envio").innerHTML = "Costo de envio: UYU" + envio;
+ };
+
+ // Envio express
+ function envioExpress(subtotal) {
+     envio = subtotal * 0.07;
+     document.getElementById("costo-envio").innerHTML = "Costo de envio: UYU" + envio;
+ };
+
+ // Envio standard
+ function envioStandard(subtotal) {
+     envio = subtotal * 0.05;
+     document.getElementById("costo-envio").innerHTML = "Costo de envio: UYU" + envio;
+ };
