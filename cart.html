@@ -73,7 +73,7 @@
                         <div class="col-12 col-md-8">
                         </div>
                         <div class="col-12 col-md-4">
-                            <p class="bold">Subtotal: </p>
+                            <p class="bold">Subtotal: UYU</p>
                             <p id="subtotal-art" class="bold"></p>
                         </div>
                     </div>
@@ -89,30 +89,36 @@
                         <div class="col-12 col-md-6">
                             <p class="bold">Datos para el envio</p>
                             <div class="form-row">
-                                <input class="col-6 form-control" id="nombreEnvio" type="text" placeholder="Nombre de quien recibe" style="width: 100%;" value="" style="margin-top: 10px; margin-bottom: 10px;" />
-                                <input class="col-6 form-control" id="telefonoEnvio" type="text" placeholder="Telefono de contacto" style="width: 100%;" value="" style="margin-top: 20px;" />
-                                <input class="col-12 form-control" id="direccionEnvio" type="text" placeholder="Direccion de envio" style="width: 100%;" value="" style="margin-top: 20px;" />
-                                <input class="col-6 form-control" id="paisEnvio" type="text" placeholder="Pais" style="width: 100%;" value="" style="margin-top: 20px;" />
-                                <input class="col-6 form-control" id="ciudadEnvio" type="text" placeholder="Ciudad" style="width: 100%;" value="" style="margin-top: 20px;" />
+                                <input class="col-6 form-control req" id="nombreEnvio" type="text" placeholder="Nombre de quien recibe" style="width: 100%;" value="" style="margin-top: 10px; margin-bottom: 10px;" />
+                                <input class="col-6 form-control req" id="telefonoEnvio" type="text" placeholder="Telefono de contacto" style="width: 100%;" value="" style="margin-top: 20px;" />
+                                <input class="col-12 form-control req" id="direccionEnvio" type="text" placeholder="Direccion de envio" style="width: 100%;" value="" style="margin-top: 20px;" />
+                                <input class="col-6 form-control req" id="paisEnvio" type="text" placeholder="Pais" style="width: 100%;" value="" style="margin-top: 20px;" />
+                                <input class="col-6 form-control req" id="ciudadEnvio" type="text" placeholder="Ciudad" style="width: 100%;" value="" style="margin-top: 20px;" />
                             </div>
+                            <p class="bold alertmessage" id="error-datos-envio"></p>
                         </div>
                         <div class="col-12 col-md-2"></div>
                         <div class="col-12 col-md-4">
                             <p class="bold">Tipo de envio</p>
                             <div class="d-block my-3">
-                                <div class="custom-control custom-radio">
-                                    <input id="premium" name="envio" type="radio" class="custom-control-input" required="">
-                                    <label class="custom-control-label" for="premium" onclick="envioPremium(100)">Premium (2-5 días) <br> Costo del 15% sobre el subtotal </label>
-                                </div>
-                                <div class="custom-control custom-radio">
-                                    <input id="express" name="envio" type="radio" class="custom-control-input" required="">
-                                    <label class="custom-control-label" for="express" onclick="envioExpress(100)">Express (5-8 días)<br> Costo del 7% sobre el subtotal </label>
-                                </div>
-                                <div class="custom-control custom-radio">
-                                    <input id="standard" name="envio" type="radio" class="custom-control-input" required="" onclick="envioStandard(100)">
-                                    <label class="custom-control-label" for="standard">Standard (12-15 días) <br> Costo del 5% sobre el subtotal</label>
-                                </div>
-                                <p class="bold" id="costo-envio" style="margin-top: 20px;">Costo de envio: UYU</p>
+                                <form id="seleccion-costo-envio">
+                                    <div class="custom-control custom-radio">
+                                        <input id="premium" value="0.15" name="envio" type="radio" class="custom-control-input" required="" onclick="costoEnvio()">
+                                        <label class="custom-control-label" for="premium">Premium (2-5 días) <br> Costo del 15% sobre el subtotal </label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input id="express" value="0.07" name="envio" type="radio" class="custom-control-input" required="" onclick="costoEnvio()">
+                                        <label class="custom-control-label" for="express">Express (5-8 días)<br> Costo del 7% sobre el subtotal </label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input id="standard" value="0.05" name="envio" type="radio" class="custom-control-input" required="" onclick="costoEnvio()">
+                                        <label class="custom-control-label" for="standard">Standard (12-15 días) <br> Costo del 5% sobre el subtotal</label>
+                                    </div>
+                                </form>
+                                <p class="bold alertmessage" id="error-costo-envio"></p>
+                                <p class="bold" style="margin-top: 20px;">Costo de envio: UYU</p>
+                                <p class="bold" id="costo-envio" style="margin-top: 20px;"></p>
+                                <button type="button" class="btn btn-secondary" style="width: 100%;" onclick="validarCostoEnvio(); validarDatosEnvio()">Aceptar</button>
                             </div>
                         </div>
                     </div>
@@ -125,7 +131,7 @@
                         <div class="col-12 col-md-8">
                         </div>
                         <div class="col-12 col-md-4">
-                            <p class="bold">Total a pagar:</p>
+                            <p class="bold">Total a pagar: UYU</p>
                             <p id="total" class="bold"></p>
                         </div>
                     </div>
@@ -162,10 +168,10 @@
                                 <div class="collapse" id="collapseTarjeta" style="margin-top: 10px; margin-bottom: 10px;">
                                     <div class="form-row">
                                         <p>Ingresa los datos de tu tarjeta de credito</p>
-                                        <input class="col-12 form-control" id="titularTarjeta" type="text" placeholder="Nombre del titular de la tarjeta" style="width: 100%;" />
-                                        <input class="col-12 form-control" id="numeroTarjeta" type="text" placeholder="Numero de la tarjeta" style="width: 100%;" />
-                                        <input class="col-6 form-control" id="vencimientoTarjeta" type="date" placeholder="Fecha de vencimiento" style="width: 100%;" />
-                                        <input class="col-6 form-control" id="CVCTarjeta" type="text" placeholder="Codigo CVC" style="width: 100%;" />
+                                        <input class="col-12 form-control reqTarj" id="titularTarjeta" type="text" placeholder="Nombre del titular de la tarjeta" style="width: 100%;" />
+                                        <input class="col-12 form-control reqTarj" id="numeroTarjeta" type="text" placeholder="Numero de la tarjeta" style="width: 100%;" />
+                                        <input class="col-6 form-control reqTarj" id="vencimientoTarjeta" type="date" placeholder="Fecha de vencimiento" style="width: 100%;" />
+                                        <input class="col-6 form-control reqTarj" id="CVCTarjeta" type="text" placeholder="Codigo CVC" style="width: 100%;" />
                                     </div>
                                 </div>
 
@@ -177,15 +183,17 @@
                                 </p>
                                 <div class="collapse" id="collapseTransferencia" style="margin-top: 10px; margin-bottom: 10px;">
                                     <div class="form-row">
-                                        <p>Numero de cuenta JAP2020: 123-456-798</p>
-                                        <input class="col-12 form-control" id="numeroTransferencia" type="text" placeholder="Numero de referencia de la transferencia" style="width: 100%;" />
+                                        <p>Deberas realizar un deposito o transferencia bancaria por el monto final de tu compra al numero de cuenta que figura a continuacion:<br>
+                                            <b>BANCO URUGUAY: 123-456-798</b><br> Luego de haber realizado la operacion, ingresa en numero de referencia que figura en el ticket.</p>
+                                        <input class="col-12 form-control" id="numeroTransferencia" type="text" placeholder="Numero de referencia" style="width: 100%;" />
                                     </div>
                                 </div>
+                                <p class="bold alertmessage" id="error-pago"></p>
 
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                <button type="button" class="btn btn-dark">Aceptar</button>
+                                <button type="button" class="btn btn-dark custom-close" onclick="validarFormaPago()">Aceptar</button>
                             </div>
                         </div>
                     </div>
@@ -198,8 +206,10 @@
                         </div>
                         <div class="col-12 col-md-4">
                             <p class="alertmsg" id="alertpass"></p>
-                            <button class="button btn btn-dark" type="button" id="comprarbtn" onclick="" style="width: 100%;"> Comprar </button>
+                            <button class="button btn btn-dark" type="button" id="comprarbtn" onclick="validarCompra()" style="width: 100%;"> Comprar </button>
                         </div>
+                        <p class="bold alertmessage" id="error-compra"></p>
+                        <p class="bold alert-success .text-center" id="exito-compra"></p>
                     </div>
                 </div>
             </div>

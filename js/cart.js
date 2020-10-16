@@ -1,5 +1,3 @@
- //const PAISES = https://raw.githubusercontent.com/millan2993/countries/master/json/countries.json
-
  //Función que se ejecuta una vez que se haya lanzado el evento de
  //que el documento se encuentra cargado, es decir, se encuentran todos los
  //elementos HTML presentes.
@@ -8,6 +6,7 @@
          if (resultObj.status === "ok") {
              cartList = resultObj.data;
              showCart(cartList);
+             subtotalArticulos();
          }
      });
  });
@@ -33,8 +32,8 @@
                 </div>
                 <div class="col-12 col-md-4">
                     <small class="text-muted"> Precio unitario: ` + cartProduct.currency + cartProduct.unitCost + ` </small>
-                    <input class="form-control" type="number" min="1" max="100" placeholder="` + cartProduct.count + `" onchange="calcularSubtotal('` + cartProduct.currency + `', this.value, ` + cartProduct.unitCost + `, 'numero` + i + `')">
-                    <small class="text-muted bold" id="numero` + i + `" >
+                    <input class="form-control" type="number" min="0" max="100" placeholder="` + cartProduct.count + `" onchange="calcularSubtotal('` + cartProduct.currency + `', this.value, ` + cartProduct.unitCost + `, 'numero` + i + `');subtotalArticulos(); costoEnvio(); calcularCostoFinal()">
+                    <span> Total: UYU </span><small class="text-muted bold total" id="numero` + i + `" >
                     ` + subtotal(cartProduct.currency, cartProduct.count, cartProduct.unitCost) + `
                     </small>                    
                 </div>
@@ -46,49 +45,170 @@
      document.getElementById("cart-list-container").innerHTML = htmlContentToAppend;
  };
 
- // Funcion que calcula subtotales iniciales
+
+ // FUNCIONES PARA CALCULAR COSTOS
+
+ // Funcion que calcula subtotales iniciales de cada articulo en pesos
 
  function subtotal(currency, cant, precio) {
      if (currency == "UYU") {
          total = cant * precio;
-         return "Total: " + currency + total;
+         return total;
      } else {
          total = cant * precio;
-         return "Total: UYU" + total * 40;
+         return total * 40;
      }
  };
 
- // Funcion que calcula subtotales cuando el usuario cambia cantidad
+
+ // Funcion que calcula subtotal de cada producto cuando el usuario cambia cantidad
 
  function calcularSubtotal(currency, cant, precio, id) {
      if (currency == "UYU") {
          total = cant * precio;
-         texto = "Total: " + currency + total;
+         texto = total;
          document.getElementById(id).innerHTML = texto;
      } else {
          total = cant * precio;
-         texto = "Total: UYU" + total * 40;
+         texto = total * 40;
          document.getElementById(id).innerHTML = texto;
      }
  };
 
- // Funciones para calcular costo de envio
 
+ // Funcion que calcula subtotal de todos los productos seleccionados
 
- // Envio premium
- function envioPremium(subtotal) {
-     envio = subtotal * 0.15;
-     document.getElementById("costo-envio").innerHTML = "Costo de envio: UYU" + envio;
+ var costoArticulo = document.getElementsByClassName("total");
+
+ function subtotalArticulos() {
+     var costoTotalDeArticulos = 0
+     for (let j = 0; j < costoArticulo.length; j++) {
+         costoTotalDeArticulos += parseInt(costoArticulo[j].innerHTML);
+     };
+     document.getElementById("subtotal-art").innerHTML = costoTotalDeArticulos;
  };
 
- // Envio express
- function envioExpress(subtotal) {
-     envio = subtotal * 0.07;
-     document.getElementById("costo-envio").innerHTML = "Costo de envio: UYU" + envio;
+
+ // Funcion para calcular costo de envio
+
+ function costoEnvio() {
+     var subtotal = parseInt(document.getElementById("subtotal-art").innerHTML);
+     var porcentaje = 0;
+
+     if (document.getElementById('premium').checked) {
+         porcentaje = parseFloat(document.getElementById('premium').value);
+     } else if (document.getElementById('express').checked) {
+         porcentaje = parseFloat(document.getElementById('express').value);
+     } else if (document.getElementById('standard').checked) {
+         porcentaje = parseFloat(document.getElementById('standard').value);
+     };
+
+     var envio = parseInt(subtotal * porcentaje);
+     document.getElementById("costo-envio").innerHTML = envio;
+     calcularCostoFinal();
  };
 
- // Envio standard
- function envioStandard(subtotal) {
-     envio = subtotal * 0.05;
-     document.getElementById("costo-envio").innerHTML = "Costo de envio: UYU" + envio;
+
+ //Funcion para calcular costo total (envio incluido)
+
+ function calcularCostoFinal() {
+     var subtotal = parseInt(document.getElementById("subtotal-art").innerHTML);
+     var envio = parseInt(document.getElementById("costo-envio").innerHTML);
+     total = subtotal + envio;
+     document.getElementById("total").innerHTML = total;
  };
+
+
+ //VALIDACIONES
+
+ //Validacion costo de envio
+ function validarCostoEnvio() {
+     var tipoEnvio = document.getElementsByName("envio");
+     var formValid = false;
+
+     var i = 0;
+     while (!formValid && i < tipoEnvio.length) {
+         if (tipoEnvio[i].checked) formValid = true;
+         i++;
+     }
+
+     if (!formValid) {
+         document.getElementById("error-costo-envio").innerHTML = "Debe seleccionar un tipo de envío";
+         return formValid;
+     } else {
+         document.getElementById("error-costo-envio").innerHTML = "";
+         return true;
+     }
+ };
+
+ //Validacion datos de envio
+ function validarDatosEnvio() {
+     var addrElem = document.getElementsByClassName("req");
+     var formValid = true;
+
+     for (var i = 0; i < addrElem.length; i++) {
+         formValid = formValid && addrElem[i].value != "";
+     }
+     if (formValid == false) {
+         document.getElementById("error-datos-envio").innerHTML = "Debe completar todos los campos";
+         return false;
+     } else {
+         document.getElementById("error-datos-envio").innerHTML = ""
+         return true;
+     };
+ }
+
+ //Validacion datos tarjeta de cedito
+ function validarTarjeta() {
+     var datosTarj = document.getElementsByClassName("reqTarj");
+     var formValid = true;
+
+     for (var i = 0; i < datosTarj.length; i++) {
+         formValid = formValid && datosTarj[i].value != "";
+     }
+     if (formValid == false) {
+         return false;
+     } else {
+         return true;
+     };
+ }
+
+ //Validacion datos transferencia
+ function validarTransferencia() {
+     var datosTrans = document.getElementById("numeroTransferencia").value;
+
+     if (datosTrans == "") {
+         return false;
+     } else {
+         return true;
+     };
+ }
+
+
+ //Validacion Forma de Pago
+ function validarFormaPago() {
+     document.getElementById("error-pago").innerHTML = "";
+     if (validarTarjeta() == true && validarTransferencia() == false) {
+         $('#pagoModal').modal('hide');
+         return true;
+     } else if (validarTarjeta() == false && validarTransferencia() == true) {
+         $('#pagoModal').modal('hide');
+         return true;
+     } else {
+         document.getElementById("error-pago").innerHTML = "Debe elegir un unico medio de pago y completar los campos del mismo para continuar";
+         return false;
+     };
+ }
+
+
+ //Efectuar compra
+ function validarCompra() {
+     if (validarFormaPago() == true && validarDatosEnvio() == true && validarCostoEnvio() == true) {
+         getJSONData(CART_BUY_URL).then(function(resultObj) {
+             if (resultObj.status === "ok") {
+                 mensaje = resultObj.data;
+                 document.getElementById("exito-compra").innerHTML = mensaje.msg;
+             }
+         });
+     };
+ }
