@@ -210,5 +210,7 @@
                  document.getElementById("exito-compra").innerHTML = mensaje.msg;
              }
          });
+     } else {
+         document.getElementById("error-compra").innerHTML = "No se ha podido efectuar la compra, revisa los datos de envio y forma de pago";
      };
  }
