@@ -34,7 +34,7 @@ function showCart(cartList) {
                    <small class="text-muted"> Precio unitario: ` + cartProduct.currency + cartProduct.unitCost + ` </small>
                    <div class="row">
                     <div class="col-8">
-                   <input class="form-control" type="number" min="0" max="100" placeholder="` + cartProduct.count + `" onchange="calcularSubtotal('` + cartProduct.currency + `', this.value, ` + cartProduct.unitCost + `, 'numero` + i + `');subtotalArticulos(); costoEnvio(); calcularCostoFinal()">
+                   <input class="form-control" type="number" min="1" max="100" placeholder="` + cartProduct.count + `" onchange="calcularSubtotal('` + cartProduct.currency + `', this.value, ` + cartProduct.unitCost + `, 'numero` + i + `');subtotalArticulos(); costoEnvio(); calcularCostoFinal()">
                    </div>
                    <div class="col-2">
                        <button type="button" class="btn btn-outline-secondary" onclick="eliminarProducto('articulo` + i + `')" > <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
