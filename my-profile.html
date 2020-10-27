@@ -52,39 +52,61 @@
             </div>
         </div>
     </nav>
-    <div class="container p-5">
-        <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-            <h4 class="alert-heading">¡A trabajar! :)</h4>
-            <p>Esta sección corresponde a: Entrega 7 (Fecha de entrega: 8/11/202020) -> Punto 1 y 2.</p>
-            <hr>
-            <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+
+
+    <main role="main" class="pb-5">
+        <div class="text-center p-4">
+            <h2>Mi perfil</h2>
         </div>
-    </div>
-    <footer class="text-muted bg-light">
+
+        <!--Datos personales-->
         <div class="container">
-            <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
-            <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+            <div class="row justify-content-md-center">
+                <div class="col-12 col-md-4">
+                    <img src="img/avatar.png" width="200px"></img>
+                </div>
+                <div class="col-12 col-md-8">
+                    <p class="bold">Datos personales</p>
+                    <div class="form-row">
+                        <input class="col-6 form-control req" id="usuario-nombre" type="text" placeholder="Nombre" style="width: 100%;" value="" />
+                        <input class="col-6 form-control req" id="usuario-apellido" type="text" placeholder="Apellido" style="width: 100%;" value="" />
+                        <input class="col-12 form-control req" id="usuario-email" type="text" placeholder="Email" style="width: 100%;" value="" />
+                        <input class="col-6 form-control req" id="usuario-telefono" type="text" placeholder="Telefono de contacto" style="width: 100%;" value="" />
+                        <input class="col-6 form-control req" id="usuario-edad" type="number" placeholder="Edad" style="width: 100%;" value="" />
+                    </div>
+                    <button type="button" class="btn btn-secondary" onclick="" style="margin-top: 20px;">Modificar datos</button>
+                    <p class="bold alertmessage" id="error-datos"></p>
+                </div>
+            </div>
         </div>
-    </footer>
-    <div class="alert fade alert-success" role="alert" id="alertResult">
-        <span id="resultSpan"></span>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+
+
+
+        <footer class="text-muted bg-light">
+            <div class="container">
+                <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
+                <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+            </div>
+        </footer>
+        <div class="alert fade alert-success" role="alert" id="alertResult">
+            <span id="resultSpan"></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
-    </div>
-    <div id="spinner-wrapper">
-        <div class="lds-ring">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
         </div>
-    </div>
-    <script src="js/jquery-3.4.1.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/dropzone.js"></script>
-    <script src="js/init.js"></script>
-    <script src="js/my-profile.js"></script>
+        <div id="spinner-wrapper">
+            <div class="lds-ring">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <script src="js/jquery-3.4.1.min.js"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/dropzone.js"></script>
+        <script src="js/init.js"></script>
+        <script src="js/my-profile.js"></script>
 </body>
 
 </html>
