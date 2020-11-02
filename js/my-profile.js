@@ -9,8 +9,9 @@ document.addEventListener("DOMContentLoaded", function(e) {
     document.getElementById("u-edad").value = localStorage.getItem('nuevoedad');
 });
 
+var infoUsuario = {};
 
-// funcion que almacena datos de usuario con modificaciones en sessionStorage
+// funcion que almacena datos de usuario con modificaciones en localStorage y crea JSON
 function guardarDatos() {
     //nombre
     var usuarionombre = $("#u-nombre").val();
