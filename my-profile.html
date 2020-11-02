@@ -62,25 +62,28 @@
         <!--Datos personales-->
         <div class="container">
             <div class="row justify-content-md-center">
-                <div class="col-12 col-md-4">
+                <div class="col-12 col-md-4" style="margin-bottom: 40px;">
                     <img src="img/avatar.png" width="200px"></img>
+                    <button type="button" class="btn btn-secondary" onclick="guardarImagen()" style="margin-top: 20px;">Cambiar imagen</button>
                 </div>
                 <div class="col-12 col-md-8">
-                    <p class="bold">Datos personales</p>
                     <div class="form-row">
-                        <input class="col-6 form-control req" id="usuario-nombre" type="text" placeholder="Nombre" style="width: 100%;" value="" />
-                        <input class="col-6 form-control req" id="usuario-apellido" type="text" placeholder="Apellido" style="width: 100%;" value="" />
-                        <input class="col-12 form-control req" id="usuario-email" type="text" placeholder="Email" style="width: 100%;" value="" />
-                        <input class="col-6 form-control req" id="usuario-telefono" type="text" placeholder="Telefono de contacto" style="width: 100%;" value="" />
-                        <input class="col-6 form-control req" id="usuario-edad" type="number" placeholder="Edad" style="width: 100%;" value="" />
+                        <label class="bold col-6">Nombre</label>
+                        <label class="bold col-6">Apellido</label>
+                        <input class="col-6 form-control req" id="u-nombre" type="text" style="width: 100%;" value="" />
+                        <input class="col-6 form-control req" id="u-apellido" type="text" style="width: 100%;" value="" />
+                        <label class="bold col-6">Email</label>
+                        <input class="col-12 form-control req" id="u-email" type="text" style="width: 100%;" value="" />
+                        <label class="bold col-6">Telefono</label>
+                        <label class="bold col-6">Edad</label>
+                        <input class="col-6 form-control req" id="u-telefono" type="text" style="width: 100%;" value="" />
+                        <input class="col-6 form-control req" id="u-edad" type="number" style="width: 100%;" value="" />
                     </div>
-                    <button type="button" class="btn btn-secondary" onclick="" style="margin-top: 20px;">Modificar datos</button>
+                    <button type="button" class="btn btn-secondary" onclick="guardarDatos()" style="margin-top: 20px;">Guardar cambios</button>
                     <p class="bold alertmessage" id="error-datos"></p>
                 </div>
             </div>
         </div>
-
-
 
         <footer class="text-muted bg-light">
             <div class="container">
