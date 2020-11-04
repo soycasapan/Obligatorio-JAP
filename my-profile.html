@@ -77,11 +77,13 @@
                         <label class="bold col-6">Edad</label>
                         <input class="col-6 form-control req" id="u-telefono" type="text" style="width: 100%;" value="" />
                         <input class="col-6 form-control req" id="u-edad" type="number" style="width: 100%;" value="" />
+                        <p class="bold successmessage" id="success-datos" style="margin-top: 20px; margin-bottom: 20px;"></p>
+                        <p class="bold alertmessage" id="error-datos" style="margin-top: 20px; margin-bottom: 20px;"></p>
                     </div>
                     <input type="file" id="files" name="files" style="margin-top: 20px; margin-bottom: 20px;">
                     <br>
-                    <button type="button" class="btn btn-secondary" onclick="guardarDatos(); validarDatos()">Guardar cambios</button>
-                    <p class="bold alertmessage" id="error-datos"></p>
+                    <button type="button" class="btn btn-secondary" style="margin-top: 20px; margin-bottom: 50px;" onclick="guardarDatos()">Guardar cambios</button>
+
                 </div>
             </div>
         </div>

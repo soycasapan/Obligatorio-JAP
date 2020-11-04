@@ -15,30 +15,27 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
 //Funcion que almacena datos de usuario con modificaciones en localStorage y crea JSON
 function guardarDatos() {
-    //nombre
     var usuarionombre = $("#u-nombre").val();
-    document.getElementById("u-nombre").value = usuarionombre;
-    //apellido
     var usuarioapellido = $("#u-apellido").val();
-    document.getElementById("u-apellido").value = usuarioapellido;
-    //email
     var usuarioemail = $("#u-email").val();
-    document.getElementById("u-email").value = usuarioemail;
-    //telefono
     var usuariotelefono = $("#u-telefono").val();
-    document.getElementById("u-telefono").value = usuariotelefono;
-    //edad
     var usuarioedad = $("#u-edad").val();
-    document.getElementById("u-edad").value = usuarioedad;
-    var infoUsuario = {
-        "nombre": usuarionombre,
-        "apellido": usuarioapellido,
-        "email": usuarioemail,
-        "telefono": usuariotelefono,
-        "edad": usuarioedad,
+    if (usuarionombre == "" || usuarioemail == "") {
+        document.getElementById("error-datos").innerHTML = "Debes completar los campos obligatorios indicados con un *";
+        document.getElementById("success-datos").innerHTML = "";
+    } else {
+        document.getElementById("error-datos").innerHTML = "";
+        document.getElementById("success-datos").innerHTML = "Tus datos han sido guardados exitosamente!";
+        var infoUsuario = {
+            "nombre": usuarionombre,
+            "apellido": usuarioapellido,
+            "email": usuarioemail,
+            "telefono": usuariotelefono,
+            "edad": usuarioedad,
+        };
+        //convierte objeto JS en JSON para que los datos sean almacenados en localStorage;
+        localStorage.setItem("infoUsuario", JSON.stringify(infoUsuario));
     };
-    //convierte objeto JS en JSON para que los datos sean almacenados en localStorage;
-    localStorage.setItem("infoUsuario", JSON.stringify(infoUsuario));
 };
 
 
