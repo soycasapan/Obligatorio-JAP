@@ -7,11 +7,18 @@ document.addEventListener("DOMContentLoaded", function(e) {
     document.getElementById("u-email").value = localStorage.getItem('nuevoemail');
     document.getElementById("u-telefono").value = localStorage.getItem('nuevotelefono');
     document.getElementById("u-edad").value = localStorage.getItem('nuevoedad');
+    document.getElementById('base64').src = "data:image/jpeg;base64," + localStorage.getItem('nuevafoto');
 });
 
-var infoUsuario = {};
+var infoUsuario = {
+    "nombre": "",
+    "apellido": "",
+    "email": "",
+    "telefono": "",
+    "edad": "",
+};
 
-// funcion que almacena datos de usuario con modificaciones en localStorage y crea JSON
+//Funcion que almacena datos de usuario con modificaciones en localStorage y crea JSON
 function guardarDatos() {
     //nombre
     var usuarionombre = $("#u-nombre").val();
@@ -40,4 +47,40 @@ function guardarDatos() {
         "telefono": usuariotelefono,
         "edad": usuarioedad,
     };
+};
+
+
+//Funcion que valida datos obligatorios
+function validarDatos() {
+    if (usuarionombre == "" && usuariomail == "") {
+        document.getElementById('error-datos').innerHTML = "Debes completar los datos obligatorios";
+    };
+};
+
+
+//Funcion para cambiar imagen de perfil, basada en funcion existente de StackOverflow que carga la imagen, la convierte a base 64 y devuelve la informacion para guardarla en localStorage
+
+// Check for the File API support.
+if (window.File && window.FileReader && window.FileList && window.Blob) {
+    document.getElementById('files').addEventListener('change', handleFileSelect, false);
+} else {
+    alert('The File APIs are not fully supported in this browser.');
+}
+
+function handleFileSelect(evt) {
+    var f = evt.target.files[0]; // FileList object
+    var reader = new FileReader();
+    // Closure to capture the file information.
+    reader.onload = (function(theFile) {
+        return function(e) {
+            var binaryData = e.target.result;
+            //Converting Binary Data to base 64
+            var base64String = window.btoa(binaryData);
+            //showing file converted to base64
+            document.getElementById('base64').src = "data:image/jpeg;base64," + base64String;
+            localStorage.setItem('nuevafoto', base64String);
+        };
+    })(f);
+    // Read in the image file as a data URL.
+    reader.readAsBinaryString(f);
 };

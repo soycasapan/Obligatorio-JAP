@@ -176,3 +176,9 @@ a.custom-card:hover {
 .bold {
     font-weight: bold;
 }
+
+.buttonimg {
+    border: 0px;
+    border-color: white;
+    background-color: white;
+}

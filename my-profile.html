@@ -63,23 +63,24 @@
         <div class="container">
             <div class="row justify-content-md-center">
                 <div class="col-12 col-md-4" style="margin-bottom: 40px;">
-                    <img src="img/avatar.png" width="200px"></img>
-                    <button type="button" class="btn btn-secondary" onclick="guardarImagen()" style="margin-top: 20px;">Cambiar imagen</button>
+                    <img id="base64" width="200px" class="rounded-circle"></img>
                 </div>
                 <div class="col-12 col-md-8">
                     <div class="form-row">
-                        <label class="bold col-6">Nombre</label>
+                        <label class="bold col-6">Nombre *</label>
                         <label class="bold col-6">Apellido</label>
                         <input class="col-6 form-control req" id="u-nombre" type="text" style="width: 100%;" value="" />
                         <input class="col-6 form-control req" id="u-apellido" type="text" style="width: 100%;" value="" />
-                        <label class="bold col-6">Email</label>
+                        <label class="bold col-6">Email *</label>
                         <input class="col-12 form-control req" id="u-email" type="text" style="width: 100%;" value="" />
                         <label class="bold col-6">Telefono</label>
                         <label class="bold col-6">Edad</label>
                         <input class="col-6 form-control req" id="u-telefono" type="text" style="width: 100%;" value="" />
                         <input class="col-6 form-control req" id="u-edad" type="number" style="width: 100%;" value="" />
                     </div>
-                    <button type="button" class="btn btn-secondary" onclick="guardarDatos()" style="margin-top: 20px;">Guardar cambios</button>
+                    <input type="file" id="files" name="files" style="margin-top: 20px; margin-bottom: 20px;">
+                    <br>
+                    <button type="button" class="btn btn-secondary" onclick="guardarDatos(); validarDatos()">Guardar cambios</button>
                     <p class="bold alertmessage" id="error-datos"></p>
                 </div>
             </div>
